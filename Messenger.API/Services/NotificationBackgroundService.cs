@@ -65,7 +65,7 @@ namespace Messenger.API.Services
                         on a.MessageId = b.Id
                         where a.IsNotified = 0 and
                         a.IsRead = 0 and
-                        b.Timestamp <= dateadd(minute, -2, getutcdate())";
+                        b.Timestamp <= dateadd(minute, -5, getutcdate())";
 
                         var groupMessages = await conn.QueryAsync<GroupMessage>(sql);
 
