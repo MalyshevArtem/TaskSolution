@@ -1,0 +1,26 @@
+﻿CREATE TABLE Messages (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    FromUserId NVARCHAR(100) NOT NULL,
+    ToUserId NVARCHAR(100) NOT NULL,
+    Content NVARCHAR(MAX) NOT NULL,
+    Timestamp DATETIME2 NOT NULL,
+    IsGroupMessage BIT NOT NULL DEFAULT 0,
+    IsEdited BIT NOT NULL DEFAULT 0,
+    IsDeleted BIT NOT NULL DEFAULT 0,
+    IsRead BIT NOT NULL DEFAULT 0,
+    IsNotified BIT NOT NULL DEFAULT 0,
+);
+
+CREATE TABLE GroupMembers (
+    GroupId NVARCHAR(100),
+    UserId NVARCHAR(100),
+    PRIMARY KEY (GroupId, UserId)
+);
+
+CREATE TABLE GroupMessageReads (
+    MessageId UNIQUEIDENTIFIER,
+    UserId NVARCHAR(100),
+    IsRead BIT NOT NULL DEFAULT 0,
+    IsNotified BIT NOT NULL DEFAULT 0,
+    PRIMARY KEY (MessageId, UserId)
+);
